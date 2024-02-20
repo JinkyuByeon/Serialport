@@ -50,28 +50,36 @@ namespace day1
             this.comboBox_port.Name = "comboBox_port";
             this.comboBox_port.Size = new System.Drawing.Size(121, 20);
             this.comboBox_port.TabIndex = 0;
+            this.comboBox_port.Tag = "comboBox_port";
             // 
             // button_connect
             // 
             this.button_connect.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.button_connect.Location = new System.Drawing.Point(40, 210);
+            this.button_connect.Location = new System.Drawing.Point(14, 210);
             this.button_connect.Name = "button_connect";
             this.button_connect.Padding = new System.Windows.Forms.Padding(200);
             this.button_connect.Size = new System.Drawing.Size(81, 47);
             this.button_connect.TabIndex = 1;
+            this.button_connect.Tag = "button_connect";
             this.button_connect.Text = "연결하기";
             this.button_connect.UseVisualStyleBackColor = true;
             this.button_connect.Click += new System.EventHandler(this.Button_connect_Click);
             // 
+            // serialPort1
+            // 
+            this.serialPort1.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(this.serialPort1_DataReceived);
+            // 
             // button_disconnect
             // 
             this.button_disconnect.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.button_disconnect.Location = new System.Drawing.Point(160, 210);
+            this.button_disconnect.Location = new System.Drawing.Point(140, 210);
             this.button_disconnect.Name = "button_disconnect";
             this.button_disconnect.Size = new System.Drawing.Size(81, 47);
             this.button_disconnect.TabIndex = 2;
+            this.button_disconnect.Tag = "button_disconnect";
             this.button_disconnect.Text = "연결끊기";
             this.button_disconnect.UseVisualStyleBackColor = true;
+            this.button_disconnect.Click += new System.EventHandler(this.button_disconnect_Click);
             // 
             // textBox_send
             // 
@@ -79,6 +87,7 @@ namespace day1
             this.textBox_send.Name = "textBox_send";
             this.textBox_send.Size = new System.Drawing.Size(316, 21);
             this.textBox_send.TabIndex = 3;
+            this.textBox_send.Tag = "textBox_send";
             // 
             // richTextBox_received
             // 
@@ -86,6 +95,7 @@ namespace day1
             this.richTextBox_received.Name = "richTextBox_received";
             this.richTextBox_received.Size = new System.Drawing.Size(413, 249);
             this.richTextBox_received.TabIndex = 4;
+            this.richTextBox_received.Tag = "richTextBox_received";
             this.richTextBox_received.Text = "";
             // 
             // label_send
@@ -113,6 +123,7 @@ namespace day1
             this.label_port.Name = "label_port";
             this.label_port.Size = new System.Drawing.Size(90, 12);
             this.label_port.TabIndex = 7;
+            this.label_port.Tag = "label_port";
             this.label_port.Text = "COM 포트 설정";
             // 
             // button_send
@@ -121,8 +132,10 @@ namespace day1
             this.button_send.Name = "button_send";
             this.button_send.Size = new System.Drawing.Size(75, 23);
             this.button_send.TabIndex = 8;
+            this.button_send.Tag = "button_send";
             this.button_send.Text = "보내기";
             this.button_send.UseVisualStyleBackColor = true;
+            this.button_send.Click += new System.EventHandler(this.button_send_Click);
             // 
             // label_status
             // 
@@ -131,6 +144,7 @@ namespace day1
             this.label_status.Name = "label_status";
             this.label_status.Size = new System.Drawing.Size(53, 12);
             this.label_status.TabIndex = 9;
+            this.label_status.Tag = "label_status";
             this.label_status.Text = "연결상태";
             // 
             // Form1

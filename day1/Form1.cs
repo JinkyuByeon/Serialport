@@ -37,22 +37,43 @@ namespace day1
                 serialPort1.Open(); // 시리얼 포트 열기
 
                 label_status.Text = "포트가 열렸습니다.";
-                comboBox_port.ENabled = false; // COM포트 설정 콤보박스 비활성화
+                comboBox_port.Enabled = false; // COM포트 설정 콤보박스 비활성화
             }
             else // 시리얼 포트가 열려 있다면
             {
                 label_status.Text = "포트가 이미 열려 있습니다.";
             }
         }
-        private void serialPort1_DataReceived(object sender, SerialErrorReceivedEventArgs e) // 수신 이벤트가 발생하면 이 부분이 실행
+        private void MySerialReceived(object s, EventArgs e)  //여기에서 수신 데이타를 사용자의 용도에 따라 처리
+        {
+            int ReceiveData = serialPort1.ReadByte();  //시리얼 버터에 수신된 데이타를 ReceiveData 읽어오기
+            richTextBox_received.Text = richTextBox_received.Text + string.Format("{0:X2}", ReceiveData);  //int 형식을 string형식으로 변환하여 출력
+        }
+
+        private void button_send_Click(object sender, EventArgs e)
+        {
+            serialPort1.Write(textBox_send.Text);
+        }
+
+        private void button_disconnect_Click(object sender, EventArgs e)
+        {
+            if (serialPort1.IsOpen)
+            {
+                serialPort1.Close();
+
+                label_status.Text = "포트가 닫혔습니다.";
+                comboBox_port.Enabled = true; // COM포트 설정 비활성화
+            }
+            else
+            {
+                label_status.Text = "포트가 이미 닫혀 있습니다.";
+            }
+        }
+
+        private void serialPort1_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
             this.Invoke(new EventHandler(MySerialReceived)); // 메인 쓰레드와 수신 쓰레드의 충돌 방지를 위해 invoke 사용. MySerialReceived로 이동 추가 실행.
         }
-        private void MySerialReceived(object s, EventArgs e) // 수신데이타 용도에 따라 처리
-        {
-            int ReceiveData = serialPort1.Rea
-        }
-
     }
     
     
